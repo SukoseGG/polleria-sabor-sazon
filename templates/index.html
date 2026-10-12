@@ -3,160 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sabor & Sazón | Comercial Mi Rosita</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Comercial "Mi Rosita" & Pollería "Sabor & Sazón"</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-
-    <header class="app-header">
-        <div class="header-content">
-            <div class="brand-info">
-                <div id="storeStatusBadge" class="status-indicator closed">
-                    <i class="fa-solid fa-circle"></i> <span id="statusText">Verificando horario...</span>
-                </div>
-                <span class="sub-brand-title">COMERCIAL "MI ROSITA" &</span>
-                <h1 class="main-brand-title">Pollería "Sabor & Sazón"</h1>
-                <div class="location-text">
-                    <i class="fa-solid fa-location-dot"></i> San José 449, Mochumí
-                </div>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-area">
+                <h1>Comercial "Mi Rosita"</h1>
+                <h2>& Pollería "Sabor & Sazón"</h2>
+                <p class="location"><i class="fa-solid fa-location-dot"></i> San José 449, Mochumí</p>
             </div>
-            <div class="header-right">
-                <button id="openCartTopBtn" class="cart-icon-btn">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    <span id="topCartBadge" class="top-cart-badge hidden">0</span>
-                </button>
-            </div>
+            <button id="cartBtn" class="cart-btn">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span id="cartCount" class="cart-count">0</span>
+            </button>
         </div>
     </header>
 
-    <nav class="main-tabs-nav">
-        <button class="tab-item active" data-tab="polleria">
-            <i class="fa-solid fa-utensils"></i>
-            <span>Carta & Menú</span>
-        </button>
-        <button class="tab-item" data-tab="heladeria">
-            <i class="fa-solid fa-ice-cream"></i>
-            <span>Helados & Cremoladas</span>
-        </button>
-        <button class="tab-item" data-tab="servicios">
-            <i class="fa-solid fa-print"></i>
-            <span>Impresiones</span>
-        </button>
+    <!-- Navegación por Categorías -->
+    <nav class="category-nav">
+        <button class="cat-btn active" data-category="pollos">Pollo a la Brasa</button>
+        <button class="cat-btn" data-category="salchipapas">Salchipapas</button>
+        <button class="cat-btn" data-category="hamburguesas">Hamburguesas</button>
+        <button class="cat-btn" data-category="servicios">Servicios</button>
     </nav>
 
-    <main class="app-viewport">
-        <!-- TAB 1: POLLERÍA -->
-        <section id="sec-polleria" class="tab-panel active">
-            <div class="sub-categories-bar">
-                <button class="filter-chip active" data-cat="todos">Todos</button>
-                <button class="filter-chip" data-cat="brasas">Brasas</button>
-                <button class="filter-chip" data-cat="alitas">Alitas</button>
-                <button class="filter-chip" data-cat="broaster">Broaster</button>
-                <button class="filter-chip" data-cat="a_la_carta">A la Carta</button>
-                <button class="filter-chip" data-cat="burguers">Burguers</button>
-            </div>
+    <!-- Contenido Principal -->
+    <main class="main-content">
+        <div id="menuContainer" class="menu-grid">
+            <!-- Productos cargados dinámicamente -->
+        </div>
 
-            <div id="menuList"></div>
-        </section>
-
-        <!-- TAB 2: HELADERÍA -->
-        <section id="sec-heladeria" class="tab-panel">
+        <!-- Sección Servicios (Impresiones) -->
+        <div id="servicesContainer" class="services-section" style="display: none;">
             <div class="service-card">
-                <div class="card-hero-icon"><i class="fa-solid fa-snowflake"></i></div>
-                <h2>Heladería & Cremoladas</h2>
-                <p class="card-subtitle">Atención exclusiva para consumo en nuestro establecimiento.</p>
-
-                <div class="section-block">
-                    <h3><i class="fa-solid fa-droplet"></i> Cremoladas Artesanales "D'Fruti Crema"</h3>
-                    <p class="block-desc">Elaboración propia a base de fruta natural.</p>
-                </div>
-
-                <div class="section-block">
-                    <h3><i class="fa-solid fa-shop"></i> Helados Comerciales</h3>
-                    <div class="brands-list">
-                        <div class="brand-badge-item">D'Onofrio</div>
-                        <div class="brand-badge-item">Mr. Paleta</div>
+                <h3><i class="fa-solid fa-print"></i> Fotocopias e Impresiones</h3>
+                <p>Disponibles en formato <strong>A4</strong> (Blanco/Negro y Color).</p>
+                <div class="services-spec-list">
+                    <div class="spec-row">
+                        <i class="fa-solid fa-check"></i>
+                        <div>
+                            <strong>Alta calidad</strong>
+                            <p>Impresiones nítidas para trabajos, tareas y documentos.</p>
+                        </div>
                     </div>
                 </div>
-
-                <div class="info-alert warning">
-                    <i class="fa-solid fa-circle-info"></i>
-                    <span><strong>Nota:</strong> Este servicio no cuenta con delivery. ¡Te esperamos directamente en el local!</span>
-                </div>
             </div>
-        </section>
-
-        <!-- TAB 3: IMPRESIONES -->
-        <section id="sec-servicios" class="tab-panel">
-            <div class="service-card">
-                <div class="card-hero-icon"><i class="fa-solid fa-print"></i></div>
-                <h2>Copias e Impresiones</h2>
-                <p class="card-subtitle">Servicio presencial rápido en Comercial "Mi Rosita".</p>
-
-                <div class="services-spec-list">
-    <div class="spec-row">
-        <i class="fa-solid fa-copy"></i>
-        <div>
-            <strong>Fotocopias e Impresiones</strong>
-            <p>Disponibles en formato A4 (Blanco/Negro y Color).</p>
         </div>
-    </div>
-</div>
-
-                <div class="express-box">
-                    <h3><i class="fa-solid fa-bolt"></i> Envío Rápido por WhatsApp</h3>
-                    <p>Envíanos tu archivo digital y recógelo impreso al llegar al local.</p>
-                    <a href="https://wa.me/51921576861?text=Hola,%20deseo%20enviar%20un%20archivo%20para%20copias%20o%20impresión" target="_blank" class="btn-wa-action">
-                        <i class="fa-brands fa-whatsapp"></i> Enviar archivo al WhatsApp
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- FOOTER LIMPIO -->
-        <footer class="app-clean-footer">
-            <p>Comercial "Mi Rosita" & Pollería "Sabor & Sazón"</p>
-            <p class="footer-loc">San José 449, Mochumí, Perú</p>
-        </footer>
     </main>
 
-    <!-- Notificación Toast Flotante -->
-    <div id="toastNotification" class="toast-notification hidden">
-        <i class="fa-solid fa-circle-check"></i> <span id="toastText">¡Plato agregado al pedido!</span>
-    </div>
-
-    <!-- Panel Lateral Deslizante -->
-    <div id="cartOverlay" class="drawer-backdrop hidden"></div>
-    <div id="cartDrawer" class="cart-side-drawer closed">
-        <div class="drawer-header">
-            <h3><i class="fa-solid fa-bag-shopping"></i> Tu Pedido</h3>
-            <button id="closeCartBtn" class="btn-close-drawer"><i class="fa-solid fa-xmark"></i></button>
+    <!-- Carrito Lateral (Drawer) -->
+    <div id="cartOverlay" class="cart-overlay"></div>
+    <div id="cartDrawer" class="cart-drawer">
+        <div class="cart-header">
+            <h3>Tu Pedido</h3>
+            <button id="closeCart" class="close-cart"><i class="fa-solid fa-xmark"></i></button>
         </div>
-        <div id="cartItems" class="drawer-body"></div>
-        <div class="drawer-footer">
-            <div class="form-field">
-                <label><i class="fa-solid fa-location-dot"></i> Dirección / Para Llevar:</label>
-                <input type="text" id="deliveryDetail" placeholder="Ej. Delivery a Mosaico #123 / Recoger en local">
-            </div>
-            <div class="form-field">
-                <label><i class="fa-solid fa-wallet"></i> Método de Pago:</label>
+        <div id="cartItems" class="cart-items">
+            <!-- Items del carrito -->
+        </div>
+        <div class="cart-footer">
+            <div class="payment-method-selector">
+                <label for="paymentDetail"><i class="fa-solid fa-wallet"></i> Método de Pago:</label>
                 <select id="paymentDetail">
-    <option value="Yape">Yape</option>
-    <option value="Efectivo">Efectivo</option>
-</select>
+                    <option value="Yape">Yape</option>
+                    <option value="Efectivo">Efectivo</option>
+                </select>
             </div>
-            <div class="total-summary-row">
-                <span>Total a Pagar:</span>
-                <strong id="modalTotalAmount">S/ 0.00</strong>
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">S/. 0.00</span>
             </div>
-            <button id="submitOrderBtn" class="btn-confirm-wa">
-                <i class="fa-brands fa-whatsapp"></i> Confirmar Pedido por WhatsApp
+            <button id="whatsappOrder" class="whatsapp-btn">
+                <i class="fa-brands fa-whatsapp"></i> Enviar Pedido por WhatsApp
             </button>
         </div>
     </div>
 
+    <!-- Script Principal -->
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </body>
 </html>
